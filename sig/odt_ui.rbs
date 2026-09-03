@@ -278,6 +278,74 @@ module OdtUi
     def odt_modal_footer: (
       **untyped
     ) ?{ () -> untyped } -> untyped
+
+    type dropdown_align = :start | :center | :end
+    type dropdown_side = :bottom | :top | :left | :right
+    type dropdown_variant = :outlined | :filled | :frosted
+    type dropdown_size = :sm | :md | :lg
+
+    def odt_dropdown_menu: (
+      ?open: bool,
+      ?close_on_click_outside: bool,
+      ?close_on_select: bool,
+      ?full_width: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_dropdown_trigger: (
+      ?String? text,
+      ?label: String?,
+      ?helper: String?,
+      ?helper_text: String?,
+      ?error: String?,
+      ?variant: dropdown_variant,
+      ?size: dropdown_size,
+      ?radius: radius_size?,
+      ?chevron: bool,
+      ?placeholder: String?,
+      ?left_icon: String?,
+      ?right_icon: String?,
+      ?full_width: bool,
+      ?disabled: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_dropdown_content: (
+      ?align: dropdown_align,
+      ?side: dropdown_side,
+      ?radius: radius_size?,
+      ?shadow: shadow_size?,
+      ?full_width: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_dropdown_item: (
+      ?String? text,
+      ?href: String?,
+      ?left_icon: String?,
+      ?right_icon: String?,
+      ?shortcut: String?,
+      ?destructive: bool,
+      ?disabled: bool,
+      ?inset: bool,
+      ?value: String?,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_dropdown_label: (
+      ?String? text,
+      ?inset: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_dropdown_separator: (
+      **untyped
+    ) -> untyped
+
+    def odt_dropdown_shortcut: (
+      ?String? text,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
   end
 end
 

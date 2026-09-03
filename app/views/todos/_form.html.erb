@@ -1,6 +1,5 @@
 <div id="todo_form_container">
   <%= form_with model: todo, class: "space-y-4" do |f| %>
-    <!-- Title Input -->
     <%= odt_input(
       label: "Task Title",
       name: "todo[title]",
@@ -12,7 +11,6 @@
       required: true
     ) %>
 
-    <!-- Description Textarea -->
     <%= odt_textarea(
       label: "Description",
       name: "todo[description]",
@@ -23,7 +21,6 @@
       size: :md
     ) %>
 
-    <!-- Category & Priority Row -->
     <div class="grid grid-cols-2 gap-3">
       <%= odt_select(
         label: "Category",
@@ -44,7 +41,6 @@
       ) %>
     </div>
 
-    <!-- Due Date Input -->
     <%= odt_input(
       label: "Due Date",
       type: "date",
@@ -54,7 +50,6 @@
       size: :md
     ) %>
 
-    <!-- Submit Button -->
     <div class="pt-2">
       <%= odt_button(
         "Create Task",
