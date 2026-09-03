@@ -3,26 +3,23 @@
     <%= render "stats" %>
 
     <div class="flex items-center gap-2">
-      <%= link_to root_path(filter: "all"), class: "no-underline" do %>
-        <%= odt_button "All Tasks (#{@total_count})",
-                       variant: :capsule,
-                       color: (@filter == "all" ? :primary : :surface),
-                       size: :sm %>
-      <% end %>
+      <%= odt_button "All Tasks (#{@total_count})",
+        href: root_path(filter: "all"),
+        variant: :capsule,
+        color: (@filter == "all" ? :primary : :surface),
+        size: :sm %>
 
-      <%= link_to root_path(filter: "active"), class: "no-underline" do %>
-        <%= odt_button "Active (#{@active_count})",
-                       variant: :capsule,
-                       color: (@filter == "active" ? :primary : :surface),
-                       size: :sm %>
-      <% end %>
+      <%= odt_button "Active (#{@active_count})",
+        href: root_path(filter: "active"),
+        variant: :capsule,
+        color: (@filter == "active" ? :primary : :surface),
+        size: :sm %>
 
-      <%= link_to root_path(filter: "completed"), class: "no-underline" do %>
-        <%= odt_button "Completed (#{@completed_count})",
-                       variant: :capsule,
-                       color: (@filter == "completed" ? :primary : :surface),
-                       size: :sm %>
-      <% end %>
+      <%= odt_button "Completed (#{@completed_count})",
+        href: root_path(filter: "completed"),
+        variant: :capsule,
+        color: (@filter == "completed" ? :primary : :surface),
+        size: :sm %>
     </div>
 
     <div id="todos_list" class="space-y-4">
