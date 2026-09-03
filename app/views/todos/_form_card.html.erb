@@ -1,10 +1,27 @@
 <%= odt_card(variant: :elevated, radius: :"3xl", class: "p-6") do %>
-  <div class="space-y-4">
-    <div>
-      <%= odt_heading "Create Task", as: :h3, size: :lg, weight: :bold, color: :strong %>
-      <%= odt_text "Add a new task to your workspace.", size: :sm, color: :muted, class: "mt-0.5" %>
+  <div class="flex flex-col items-center justify-center text-center py-4 space-y-3">
+    <div class="w-12 h-12 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19" />
+        <line x1="5" y1="12" x2="19" y2="12" />
+      </svg>
     </div>
-
-    <%= render "form", todo: @todo %>
+    <div>
+      <%= odt_heading "Add New Task", as: :h3, size: :lg, weight: :bold, color: :strong %>
+      <%= odt_text "Organize your workflow with custom categories and priorities.", size: :sm, color: :muted, class: "mt-0.5" %>
+    </div>
+    <div class="w-full pt-1">
+      <%= odt_button "New Todo",
+                     variant: :filled,
+                     color: :primary,
+                     size: :md,
+                     full_width: true,
+                     radius: :full,
+                     data: { odt_modal_target_id: "new_todo_modal" } %>
+    </div>
   </div>
+<% end %>
+
+<%= odt_modal id: "new_todo_modal", title: "Create Task", subtitle: "Add a new task to your workspace", size: :md do %>
+  <%= render "form", todo: @todo %>
 <% end %>

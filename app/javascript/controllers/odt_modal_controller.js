@@ -8,6 +8,24 @@ export default class extends Controller {
   }
 
   connect() {
+    if (this.element.id) {
+      this.boundTriggerHandler = (event) => {
+        const trigger = event.target.closest(`[data-odt-modal-target-id="${this.element.id}"], [data-modal-target="${this.element.id}"], [href="#${this.element.id}"]`)
+        if (trigger) {
+          event.preventDefault()
+          this.open()
+        }
+      }
+      document.addEventListener("click", this.boundTriggerHandler)
+    }
+
+    this.boundTurboSubmitHandler = (event) => {
+      if (event.detail?.success && this.element.contains(event.target)) {
+        this.close()
+      }
+    }
+    this.element.addEventListener("turbo:submit-end", this.boundTurboSubmitHandler)
+
     if (this.openValue) {
       this.open()
     }
@@ -57,5 +75,11 @@ export default class extends Controller {
 
   disconnect() {
     document.body.style.overflow = ""
+    if (this.boundTriggerHandler) {
+      document.removeEventListener("click", this.boundTriggerHandler)
+    }
+    if (this.boundTurboSubmitHandler) {
+      this.element.removeEventListener("turbo:submit-end", this.boundTurboSubmitHandler)
+    }
   }
 }
