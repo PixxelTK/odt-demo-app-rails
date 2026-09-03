@@ -5,7 +5,6 @@
     class: "p-6 transition-all duration-200 #{'opacity-80' if todo.completed?}"
   ) do %>
     <div class="space-y-3">
-      <!-- Title & Category Badge Header -->
       <div class="flex items-start justify-between gap-4">
         <div>
           <%= odt_heading(
@@ -52,7 +51,6 @@
         </div>
       </div>
 
-      <!-- Description -->
       <% if todo.description.present? %>
         <div class="pt-1">
           <%= odt_text(
@@ -64,13 +62,12 @@
         </div>
       <% end %>
 
-      <!-- Action Buttons Row -->
       <div class="flex items-center gap-3 pt-2">
         <% if todo.completed? %>
           <%= link_to toggle_todo_path(todo), data: { turbo_method: :patch }, class: "inline-block no-underline" do %>
             <%= odt_button(
               "Reopen",
-              variant: :ghost,
+              variant: :capsule,
               color: :primary,
               size: :sm,
               class: "font-semibold underline hover:no-underline"
@@ -80,10 +77,9 @@
           <%= link_to toggle_todo_path(todo), data: { turbo_method: :patch }, class: "inline-block no-underline" do %>
             <%= odt_button(
               "Mark Complete",
-              variant: :filled,
+              variant: :capsule,
               color: :primary,
               size: :sm,
-              radius: :full,
               class: "px-4 font-semibold"
             ) %>
           <% end %>
@@ -92,7 +88,7 @@
         <%= link_to todo_path(todo), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task?" }, class: "inline-block no-underline" do %>
           <%= odt_button(
             "Delete",
-            variant: :ghost,
+            variant: :capsule,
             color: :muted,
             size: :sm,
             class: "hover:text-danger text-fg-muted font-medium"
