@@ -1,0 +1,4 @@
+<%= turbo_stream.remove dom_id(@todo) %>
+<%= turbo_stream.replace "todos_stats", partial: "stats" %>
+<%= turbo_stream.replace "workspace_summary", partial: "workspace_summary" %>
+<%= odt_toast_stream @todo.title, title: "Task removed.", variant: :warning %>

@@ -1,0 +1,71 @@
+<div id="todo_form_container">
+  <%= form_with model: todo, class: "space-y-4" do |f| %>
+    <!-- Title Input -->
+    <%= odt_input(
+      label: "Task Title",
+      name: "todo[title]",
+      value: todo.title,
+      placeholder: "e.g. Design Sync & Component Review",
+      error: todo.errors[:title].first,
+      radius: :xl,
+      size: :md,
+      required: true
+    ) %>
+
+    <!-- Description Textarea -->
+    <%= odt_textarea(
+      label: "Description",
+      name: "todo[description]",
+      value: todo.description,
+      placeholder: "Discussing the new component library and reviewing latest mockups...",
+      rows: 3,
+      radius: :xl,
+      size: :md
+    ) %>
+
+    <!-- Category & Priority Row -->
+    <div class="grid grid-cols-2 gap-3">
+      <%= odt_select(
+        label: "Category",
+        name: "todo[category]",
+        options: Todo::CATEGORIES.map { |c| [c, c] },
+        selected: todo.category || "Work",
+        radius: :xl,
+        size: :md
+      ) %>
+
+      <%= odt_select(
+        label: "Priority",
+        name: "todo[priority]",
+        options: Todo::PRIORITIES.map { |p| [p, p] },
+        selected: todo.priority || "Medium",
+        radius: :xl,
+        size: :md
+      ) %>
+    </div>
+
+    <!-- Due Date Input -->
+    <%= odt_input(
+      label: "Due Date",
+      type: "date",
+      name: "todo[due_date]",
+      value: todo.due_date,
+      radius: :xl,
+      size: :md
+    ) %>
+
+    <!-- Submit Button -->
+    <div class="pt-2">
+      <%= odt_button(
+        "Create Task",
+        type: "submit",
+        color: :primary,
+        variant: :filled,
+        radius: :full,
+        full_width: true,
+        size: :md,
+        class: "font-semibold"
+      ) %>
+    </div>
+  <% end %>
+</div>

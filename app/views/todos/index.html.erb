@@ -1,0 +1,49 @@
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+  <!-- Left Column (Tasks & Stats) -->
+  <div class="lg:col-span-7 space-y-6">
+    <!-- Total Tasks Card -->
+    <%= render "stats" %>
+
+    <!-- Filter Pills -->
+    <div class="flex items-center gap-2">
+      <%= link_to root_path(filter: "all"), class: "no-underline" do %>
+        <%= odt_button "All Tasks (#{@total_count})",
+                       variant: :capsule,
+                       color: (@filter == "all" ? :primary : :surface),
+                       size: :sm %>
+      <% end %>
+
+      <%= link_to root_path(filter: "active"), class: "no-underline" do %>
+        <%= odt_button "Active (#{@active_count})",
+                       variant: :capsule,
+                       color: (@filter == "active" ? :primary : :surface),
+                       size: :sm %>
+      <% end %>
+
+      <%= link_to root_path(filter: "completed"), class: "no-underline" do %>
+        <%= odt_button "Completed (#{@completed_count})",
+                       variant: :capsule,
+                       color: (@filter == "completed" ? :primary : :surface),
+                       size: :sm %>
+      <% end %>
+    </div>
+
+    <!-- Todos List -->
+    <div id="todos_list" class="space-y-4">
+      <% if @todos.any? %>
+        <%= render @todos %>
+      <% else %>
+        <%= odt_card(variant: :subtle, radius: :"3xl", class: "p-8 text-center") do %>
+          <%= odt_text "No tasks found in this view.", color: :muted %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Right Column (Profile, Workspace Summary, Create Form) -->
+  <div class="lg:col-span-5 space-y-6">
+    <%= render "user_profile" %>
+    <%= render "workspace_summary" %>
+    <%= render "form_card" %>
+  </div>
+</div>

@@ -1,0 +1,292 @@
+module OdtUi
+  VERSION: String
+
+  module Helper
+    type button_variant = :filled | :frosted | :capsule | :ghost
+    type button_color = :primary | :secondary | :surface | :muted | :inverse | :success | :warning | :danger | :info
+    type button_size = :sm | :md | :lg
+    type radius_size = :none | :xs | :sm | :md | :lg | :xl | :"2xl" | :"3xl" | :"4xl" | :full
+    type shadow_size = :none | :card | :dropdown | :modal | :popover
+
+    type badge_variant = :subtle | :filled | :outlined
+    type badge_color = :primary | :secondary | :success | :warning | :danger | :info | :neutral
+    type badge_size = :sm | :md
+
+    type card_variant = :elevated | :outlined | :subtle | :ghost
+    type card_background = :base | :surface | :surface_elevated | :"surface-elevated" | :surface_muted | :"surface-muted" | :surface_subtle | :"surface-subtle" | :gradient_primary | :"gradient-primary" | :gradient_secondary | :"gradient-secondary" | :gradient_vibrant | :"gradient-vibrant" | :gradient_hero | :"gradient-hero" | :frosted | :frosted_muted | :"frosted-muted" | :frosted_subtle | :"frosted-subtle" | :frosted_gradient_primary | :"frosted-gradient-primary" | :frosted_gradient_secondary | :"frosted-gradient-secondary" | :transparent
+    type card_border = :none | :muted | :base | :strong | :primary | :secondary | :danger | :success | bool
+    type card_padding = :none | :xs | :sm | :md | :lg | :xl | :"2xl"
+    type card_tag = :div | :article | :section | :aside | :main
+
+    type alert_variant = :success | :warning | :danger | :info
+
+    type heading_tag = :h1 | :h2 | :h3 | :h4 | :h5 | :h6
+    type heading_size = :"5xl" | :"4xl" | :"3xl" | :"2xl" | :xl | :lg
+    type font_weight = :light | :normal | :medium | :semibold | :bold | :extrabold
+    type typography_color = :strong | :default | :muted | :subtle | :disabled | :inverse | :"inverse-strong" | :inverse_strong | :"inverse-muted" | :inverse_muted | :"inverse-subtle" | :inverse_subtle | :"inverse-disabled" | :inverse_disabled | :primary | :secondary | :success | :warning | :danger | :info
+
+    type text_tag = :p | :span | :div | :label | :small
+    type text_size = :xs | :sm | :base | :lg | :xl | :"2xl"
+
+    type avatar_size = :xs | :sm | :md | :lg | :xl | :"2xl"
+    type avatar_color = :primary | :secondary | :neutral
+
+    type input_variant = :outlined | :filled | :frosted | :unstyled
+    type input_size = :sm | :md | :lg
+    type input_resize = :none | :vertical | :horizontal | :both
+
+    type checkbox_color = :primary | :secondary | :success | :warning | :danger | :dark
+    type checkbox_size = :sm | :md | :lg
+    type radio_color = :primary | :secondary | :success | :warning | :danger | :dark
+    type radio_size = :sm | :md | :lg
+    type radio_orientation = :horizontal | :vertical
+
+    def odt_button: (
+      ?String? text,
+      ?variant: button_variant,
+      ?color: button_color,
+      ?size: button_size,
+      ?radius: radius_size?,
+      ?shadow: shadow_size?,
+      ?icon_only: bool,
+      ?full_width: bool,
+      ?loading: bool,
+      ?disabled: bool,
+      ?href: String?,
+      ?icon: String?,
+      ?right_icon: String?,
+      ?type: String,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_badge: (
+      ?String? text,
+      ?variant: badge_variant,
+      ?color: badge_color,
+      ?size: badge_size,
+      ?radius: radius_size?,
+      ?dot: bool,
+      ?icon: String?,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_card: (
+      ?title: String?,
+      ?subtitle: String?,
+      ?variant: card_variant,
+      ?background: card_background?,
+      ?border: card_border?,
+      ?shadow: shadow_size?,
+      ?radius: radius_size?,
+      ?padding: card_padding?,
+      ?hoverable: bool,
+      ?hover: bool,
+      ?as: card_tag,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_alert: (
+      ?String? message,
+      ?variant: alert_variant,
+      ?icon: String?,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_heading: (
+      ?String? text,
+      ?as: heading_tag,
+      ?size: heading_size?,
+      ?weight: font_weight?,
+      ?color: typography_color?,
+      ?truncate: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_text: (
+      ?String? text,
+      ?as: text_tag,
+      ?size: text_size?,
+      ?weight: font_weight?,
+      ?color: typography_color?,
+      ?truncate: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_avatar: (
+      ?name: String?,
+      ?src: String?,
+      ?size: avatar_size,
+      ?color: avatar_color,
+      ?icon: String?,
+      ?fallback: String?,
+      **untyped
+    ) -> untyped
+
+    def odt_input: (
+      ?label: String?,
+      ?variant: input_variant,
+      ?size: input_size,
+      ?radius: radius_size?,
+      ?type: String,
+      ?placeholder: String?,
+      ?error: String?,
+      ?helper: String?,
+      ?helper_text: String?,
+      ?success: String?,
+      ?left_icon: String?,
+      ?right_icon: String?,
+      ?prefix: String?,
+      ?suffix: String?,
+      ?addon_before: String?,
+      ?addon_after: String?,
+      ?disabled: bool,
+      ?full_width: bool,
+      **untyped
+    ) -> untyped
+
+    def odt_textarea: (
+      ?label: String?,
+      ?variant: input_variant,
+      ?size: input_size,
+      ?radius: radius_size?,
+      ?rows: Integer,
+      ?resize: input_resize,
+      ?error: String?,
+      ?helper: String?,
+      ?helper_text: String?,
+      ?success: String?,
+      ?disabled: bool,
+      ?full_width: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_select: (
+      ?label: String?,
+      ?options: untyped,
+      ?variant: input_variant,
+      ?size: input_size,
+      ?radius: radius_size?,
+      ?prompt: String?,
+      ?error: String?,
+      ?helper: String?,
+      ?helper_text: String?,
+      ?success: String?,
+      ?disabled: bool,
+      ?full_width: bool,
+      **untyped
+    ) -> untyped
+
+    def odt_checkbox: (
+      ?label: String?,
+      ?description: String?,
+      ?checked: bool,
+      ?color: checkbox_color,
+      ?size: checkbox_size,
+      ?radius: radius_size?,
+      ?disabled: bool,
+      ?error: String?,
+      **untyped
+    ) -> untyped
+
+    def odt_radio: (
+      ?label: String?,
+      ?description: String?,
+      ?checked: bool,
+      ?color: radio_color,
+      ?size: radio_size,
+      ?disabled: bool,
+      ?error: String?,
+      **untyped
+    ) -> untyped
+
+    def odt_form_group: (
+      ?label: String?,
+      ?error: String?,
+      ?helper: String?,
+      ?helper_text: String?,
+      ?success: String?,
+      ?required: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    type toaster_position = :top_right | :"top-right" | :top_center | :"top-center" | :top_left | :"top-left" | :bottom_right | :"bottom-right" | :bottom_center | :"bottom-center" | :bottom_left | :"bottom-left"
+    type toast_variant = :elevated | :frosted | :subtle | :outlined
+    type toast_type = :default | :success | :warning | :danger | :error | :info | :loading
+
+    def odt_toaster: (
+      ?position: toaster_position,
+      ?id: String,
+      ?expand: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_toast: (
+      ?String? message,
+      ?title: String?,
+      ?variant: toast_variant,
+      ?type: toast_type,
+      ?icon: String?,
+      ?duration: Integer,
+      ?dismissible: bool,
+      ?radius: radius_size?,
+      ?rich_colors: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_flash_toasts: (
+      ?untyped flash_hash,
+      ?duration: Integer
+    ) -> untyped
+
+    def odt_toast_stream: (
+      ?String? message,
+      ?title: String?,
+      ?variant: toast_variant,
+      ?type: toast_type,
+      ?target: String,
+      ?action: Symbol | String,
+      ?duration: Integer,
+      ?rich_colors: bool,
+      **untyped
+    ) -> untyped
+
+    type modal_size = :sm | :md | :lg | :xl | :full
+
+    def odt_modal: (
+      ?id: String?,
+      ?title: String?,
+      ?subtitle: String?,
+      ?size: modal_size,
+      ?radius: radius_size?,
+      ?dismissible: bool,
+      ?open: bool,
+      ?prevent_backdrop_close: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_modal_header: (
+      ?title: String?,
+      ?subtitle: String?,
+      ?dismissible: bool,
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_modal_body: (
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+
+    def odt_modal_footer: (
+      **untyped
+    ) ?{ () -> untyped } -> untyped
+  end
+end
+
+module ActionView
+  class Base
+    include OdtUi::Helper
+  end
+
+  module Helpers
+    include OdtUi::Helper
+  end
+end

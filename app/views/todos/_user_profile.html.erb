@@ -1,0 +1,18 @@
+<%= odt_card(variant: :elevated, radius: :"3xl", class: "p-6") do %>
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <%= odt_avatar(name: "John Doe", color: :secondary, size: :lg) %>
+      <div>
+        <%= odt_heading "John Doe", as: :h4, size: :base, weight: :bold, color: :strong %>
+        <%= odt_text "Senior Designer", size: :sm, color: :muted %>
+        <%= odt_text "john.doe@example.com", size: :xs, color: :muted %>
+      </div>
+    </div>
+
+    <!-- Language Selector Pill -->
+    <div class="flex items-center gap-1.5 text-xs font-semibold">
+      <span class="px-2 py-0.5 rounded-full bg-primary-500 text-white shadow-sm">EN</span>
+      <span class="px-1.5 py-0.5 text-fg-muted cursor-pointer hover:text-fg">TH</span>
+    </div>
+  </div>
+<% end %>

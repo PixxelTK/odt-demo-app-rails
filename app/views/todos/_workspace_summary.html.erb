@@ -1,0 +1,27 @@
+<div id="workspace_summary">
+  <%= odt_card(variant: :elevated, radius: :"3xl", class: "p-6") do %>
+    <div class="space-y-4">
+      <div class="flex items-center justify-between">
+        <%= odt_heading "Workspace Summary", as: :h4, size: :base, weight: :bold, color: :strong %>
+        <%= odt_badge "ODT UI v2.2", variant: :subtle, color: :primary, radius: :full, class: "text-xs font-semibold px-2.5 py-0.5" %>
+      </div>
+
+      <%= odt_text "Realtime overview of your productivity.", size: :sm, color: :muted %>
+
+      <div class="space-y-2 pt-1">
+        <div class="flex items-center gap-2 text-sm text-fg">
+          <i class="fa-solid fa-check text-success text-xs"></i>
+          <span><%= @active_count %> Tasks Pending</span>
+        </div>
+        <div class="flex items-center gap-2 text-sm text-fg">
+          <i class="fa-solid fa-check text-success text-xs"></i>
+          <span><%= @completed_count %> Tasks Completed</span>
+        </div>
+        <div class="flex items-center gap-2 text-sm text-fg">
+          <i class="fa-solid fa-check text-success text-xs"></i>
+          <span><%= @completion_rate %>% Completion Rate</span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

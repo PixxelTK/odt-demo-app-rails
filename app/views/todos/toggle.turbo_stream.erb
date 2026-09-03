@@ -1,0 +1,4 @@
+<%= turbo_stream.replace dom_id(@todo), partial: "todo", locals: { todo: @todo } %>
+<%= turbo_stream.replace "todos_stats", partial: "stats" %>
+<%= turbo_stream.replace "workspace_summary", partial: "workspace_summary" %>
+<%= odt_toast_stream @todo.title, title: (@todo.completed? ? "Task marked as completed!" : "Task reopened."), variant: :info %>

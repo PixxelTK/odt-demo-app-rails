@@ -1,0 +1,23 @@
+<div id="todos_stats">
+  <%= odt_card(variant: :elevated, radius: :"3xl", class: "p-6") do %>
+    <div class="space-y-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-surface-info text-fg-info flex items-center justify-center">
+          <i class="fa-solid fa-arrow-trend-up text-sm"></i>
+        </div>
+        <%= odt_heading "Total Tasks", as: :h4, size: :lg, weight: :semibold %>
+      </div>
+
+      <div class="flex items-baseline gap-3">
+        <span class="text-4xl sm:text-5xl font-extrabold text-fg-strong tracking-tight">
+          <%= @total_count %>
+        </span>
+        <%= odt_badge "#{@completion_rate}% completed", variant: :subtle, color: :success, radius: :full, class: "font-semibold text-xs" %>
+      </div>
+
+      <div class="w-full bg-surface-subtle rounded-full h-2 overflow-hidden">
+        <div class="bg-primary-500 h-2 rounded-full transition-all duration-500" style="width: <%= @completion_rate %>%;"></div>
+      </div>
+    </div>
+  <% end %>
+</div>

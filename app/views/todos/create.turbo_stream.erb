@@ -1,0 +1,5 @@
+<%= turbo_stream.prepend "todos_list", partial: "todo", locals: { todo: @todo } %>
+<%= turbo_stream.replace "todos_stats", partial: "stats" %>
+<%= turbo_stream.replace "workspace_summary", partial: "workspace_summary" %>
+<%= turbo_stream.replace "todo_form_container", partial: "form", locals: { todo: Todo.new } %>
+<%= odt_toast_stream @todo.title, title: "Task created successfully!", variant: :success %>

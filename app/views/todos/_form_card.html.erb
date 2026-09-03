@@ -1,0 +1,10 @@
+<%= odt_card(variant: :elevated, radius: :"3xl", class: "p-6") do %>
+  <div class="space-y-4">
+    <div>
+      <%= odt_heading "Create Task", as: :h3, size: :lg, weight: :bold, color: :strong %>
+      <%= odt_text "Add a new task to your workspace.", size: :sm, color: :muted, class: "mt-0.5" %>
+    </div>
+
+    <%= render "form", todo: @todo %>
+  </div>
+<% end %>
