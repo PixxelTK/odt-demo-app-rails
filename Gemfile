@@ -28,7 +28,7 @@ gem "tailwindcss-rails"
 gem "jbuilder"
 
 # ODT UI Rails Integration directly linked to local development path
-gem "odt-ui-rails", path: "/Users/pixel/Documents/Work/ODT/ODT-Lightweight-UI/integrations/rails"
+gem "odt-ui-rails", "~> 2.2.5"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
