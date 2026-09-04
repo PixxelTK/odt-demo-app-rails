@@ -12,6 +12,29 @@ export default class extends Controller {
     this.mutationObserver = new MutationObserver(() => this.handleMutations())
     this.mutationObserver.observe(this.element, { childList: true })
     this.handleMutations()
+
+    this.boundTriggerHandler = (event) => {
+      const trigger = event.target.closest("[data-odt-toast-message], [data-odt-toast-title]")
+      if (trigger) {
+        event.preventDefault()
+        this.show({
+          title: trigger.dataset.odtToastTitle,
+          message: trigger.dataset.odtToastMessage,
+          type: trigger.dataset.odtToastType || "default",
+          variant: trigger.dataset.odtToastVariant || "elevated",
+          duration: Number(trigger.dataset.odtToastDuration) || 4000
+        })
+      }
+    }
+    document.addEventListener("click", this.boundTriggerHandler)
+
+    window.odtToast = {
+      show: (options) => this.show(options),
+      success: (title, message) => this.show({ title, message, type: "success" }),
+      error: (title, message) => this.show({ title, message, type: "danger" }),
+      warning: (title, message) => this.show({ title, message, type: "warning" }),
+      info: (title, message) => this.show({ title, message, type: "info" })
+    }
   }
 
   disconnect() {
@@ -21,6 +44,64 @@ export default class extends Controller {
     if (this.leaveTimeout) {
       clearTimeout(this.leaveTimeout)
     }
+    if (this.boundTriggerHandler) {
+      document.removeEventListener("click", this.boundTriggerHandler)
+    }
+    if (window.odtToast) {
+      delete window.odtToast
+    }
+  }
+
+  show(eventOrOptions = {}) {
+    const options = eventOrOptions?.params || eventOrOptions || {}
+    const title = options.title || ""
+    const message = options.message || ""
+    const type = options.type || "default"
+    const variant = options.variant || "elevated"
+    const duration = options.duration !== undefined ? Number(options.duration) : 4000
+
+    const toast = document.createElement("div")
+    toast.className = `odt-toast odt-toast--variant-${variant}`
+    toast.setAttribute("role", "status")
+    toast.setAttribute("data-controller", "odt-toast")
+    toast.setAttribute("data-odt-toast-duration-value", duration.toString())
+
+    const parts = []
+
+    const icons = {
+      success: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+      info: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+      warning: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+      danger: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+      error: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+      loading: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>'
+    }
+
+    if (icons[type]) {
+      parts.push(`<span class="odt-toast__icon odt-toast__icon--${type}">${icons[type]}</span>`)
+    }
+
+    let bodyHtml = '<div class="odt-toast__body">'
+    if (title) {
+      bodyHtml += `<div class="odt-toast__title">${title}</div>`
+    }
+    if (message) {
+      bodyHtml += `<div class="odt-toast__description">${message}</div>`
+    }
+    bodyHtml += '</div>'
+    parts.push(bodyHtml)
+
+    parts.push(`
+      <button type="button" class="odt-toast__close" aria-label="Close" data-action="click->odt-toast#dismiss">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    `)
+
+    toast.innerHTML = parts.join("")
+    this.element.appendChild(toast)
   }
 
   handleMutations() {
