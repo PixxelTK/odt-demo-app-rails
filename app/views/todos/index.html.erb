@@ -37,14 +37,14 @@
     <%= render "user_profile" %>
     <%= render "workspace_summary" %>
     <%= render "form_card" %>
-
-    <%= odt_button "Toaster!",
-      variant: :capsule,
-      color: :surface,
-      data: {
-        odt_toast_title: "Toaster!",
-        odt_toast_message: "The delicious toast is here.",
-        odt_toast_type: "success"
-      } %>
   </div>
+  <%= odt_button "Toaster!",
+    variant: :capsule,
+    color: :surface,
+    class: "w-32",
+    data: {
+      odt_toast_title: "Toaster!",
+      odt_toast_message: "The delicious toast is here.",
+      odt_toast_type: "success"
+    } %>
 </div>
