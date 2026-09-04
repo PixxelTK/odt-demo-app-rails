@@ -63,20 +63,20 @@ Renders a `<button>` or an `<a>` anchor link when `href` is supplied.
 <%= odt_button "Submitting...", loading: true, disabled: true %>
 ```
 
-| Parameter | Type | Default | Options |
-| :--- | :--- | :--- | :--- |
-| `text` | String | `nil` | Label text (omit if using a block) |
-| `variant:` | Symbol | `:filled` | `:filled`, `:frosted`, `:capsule`, `:ghost` |
-| `color:` | Symbol | `:primary` | `:primary`, `:secondary`, `:surface`, `:muted`, `:inverse`, `:success`, `:warning`, `:danger`, `:info` |
-| `size:` | Symbol | `:md` | `:sm`, `:md`, `:lg` |
-| `radius:` | Symbol | `nil` | `:none`, `:xs`, `:sm`, `:md`, `:lg`, `:xl`, `:"2xl"`, `:"3xl"`, `:"4xl"`, `:full` |
-| `href:` | String | `nil` | Renders `<a>` tag instead of `<button>` |
-| `icon:` | String | `nil` | Leading icon CSS class (e.g. `"fa-solid fa-plus"`) |
-| `right_icon:` | String | `nil` | Trailing icon CSS class |
-| `icon_only:` | Boolean | `false` | Square icon button |
-| `full_width:` | Boolean | `false` | Stretches width to 100% |
-| `loading:` | Boolean | `false` | Displays spinner animation |
-| `disabled:` | Boolean | `false` | Disables interaction |
+| Parameter     | Type    | Default    | Options                                                                                                |
+| :------------ | :------ | :--------- | :----------------------------------------------------------------------------------------------------- |
+| `text`        | String  | `nil`      | Label text (omit if using a block)                                                                     |
+| `variant:`    | Symbol  | `:filled`  | `:filled`, `:frosted`, `:capsule`, `:ghost`                                                            |
+| `color:`      | Symbol  | `:primary` | `:primary`, `:secondary`, `:surface`, `:muted`, `:inverse`, `:success`, `:warning`, `:danger`, `:info` |
+| `size:`       | Symbol  | `:md`      | `:sm`, `:md`, `:lg`                                                                                    |
+| `radius:`     | Symbol  | `nil`      | `:none`, `:xs`, `:sm`, `:md`, `:lg`, `:xl`, `:"2xl"`, `:"3xl"`, `:"4xl"`, `:full`                      |
+| `href:`       | String  | `nil`      | Renders `<a>` tag instead of `<button>`                                                                |
+| `icon:`       | String  | `nil`      | Leading icon CSS class (e.g. `"fa-solid fa-plus"`)                                                     |
+| `right_icon:` | String  | `nil`      | Trailing icon CSS class                                                                                |
+| `icon_only:`  | Boolean | `false`    | Square icon button                                                                                     |
+| `full_width:` | Boolean | `false`    | Stretches width to 100%                                                                                |
+| `loading:`    | Boolean | `false`    | Displays spinner animation                                                                             |
+| `disabled:`   | Boolean | `false`    | Disables interaction                                                                                   |
 
 ---
 
@@ -90,13 +90,13 @@ Compact indicator for statuses, counters, and tags.
 <%= odt_badge "Draft", variant: :outlined, color: :neutral %>
 ```
 
-| Parameter | Type | Default | Options |
-| :--- | :--- | :--- | :--- |
-| `variant:` | Symbol | `:subtle` | `:subtle`, `:filled`, `:outlined` |
-| `color:` | Symbol | `:primary` | `:primary`, `:secondary`, `:success`, `:warning`, `:danger`, `:info`, `:neutral` |
-| `size:` | Symbol | `:md` | `:sm`, `:md` |
-| `dot:` | Boolean | `false` | Displays leading status dot |
-| `radius:` | Symbol | `nil` | Corner radius token |
+| Parameter  | Type    | Default    | Options                                                                          |
+| :--------- | :------ | :--------- | :------------------------------------------------------------------------------- |
+| `variant:` | Symbol  | `:subtle`  | `:subtle`, `:filled`, `:outlined`                                                |
+| `color:`   | Symbol  | `:primary` | `:primary`, `:secondary`, `:success`, `:warning`, `:danger`, `:info`, `:neutral` |
+| `size:`    | Symbol  | `:md`      | `:sm`, `:md`                                                                     |
+| `dot:`     | Boolean | `false`    | Displays leading status dot                                                      |
+| `radius:`  | Symbol  | `nil`      | Corner radius token                                                              |
 
 ---
 
@@ -110,21 +110,22 @@ Surface container with optional header, padding, and hover elevation.
 <% end %>
 ```
 
-| Parameter | Type | Default | Options |
-| :--- | :--- | :--- | :--- |
-| `title:` | String | `nil` | Header title |
-| `subtitle:` | String | `nil` | Header subtitle |
-| `variant:` | Symbol | `:elevated` | `:elevated`, `:outlined`, `:subtle`, `:ghost` |
-| `radius:` | Symbol | `nil` | Radius token (`:none` to `:"4xl"`, `:full`) |
-| `border:` | Symbol/Bool | `nil` | `:none`, `:muted`, `:base`, `:strong`, `:primary`, `true`, `false` |
-| `hoverable:` | Boolean | `false` | Enables hover elevation effect |
-| `as:` | Symbol | `:div` | `:div`, `:article`, `:section`, `:aside`, `:main` |
+| Parameter    | Type        | Default     | Options                                                            |
+| :----------- | :---------- | :---------- | :----------------------------------------------------------------- |
+| `title:`     | String      | `nil`       | Header title                                                       |
+| `subtitle:`  | String      | `nil`       | Header subtitle                                                    |
+| `variant:`   | Symbol      | `:elevated` | `:elevated`, `:outlined`, `:subtle`, `:ghost`                      |
+| `radius:`    | Symbol      | `nil`       | Radius token (`:none` to `:"4xl"`, `:full`)                        |
+| `border:`    | Symbol/Bool | `nil`       | `:none`, `:muted`, `:base`, `:strong`, `:primary`, `true`, `false` |
+| `hoverable:` | Boolean     | `false`     | Enables hover elevation effect                                     |
+| `as:`        | Symbol      | `:div`      | `:div`, `:article`, `:section`, `:aside`, `:main`                  |
 
 ---
 
 ### Form Controls
 
 #### Text Input (`odt_input`)
+
 ```erb
 <%= odt_input(
   label: "Email Address",
@@ -139,6 +140,7 @@ Surface container with optional header, padding, and hover elevation.
 ```
 
 #### Textarea (`odt_textarea`)
+
 ```erb
 <%= odt_textarea(
   label: "Description",
@@ -151,6 +153,7 @@ Surface container with optional header, padding, and hover elevation.
 ```
 
 #### Select (`odt_select`)
+
 Renders an interactive dropdown menu synchronized with a hidden form input.
 
 ```erb
@@ -165,6 +168,7 @@ Renders an interactive dropdown menu synchronized with a hidden form input.
 ```
 
 #### Checkbox & Radio (`odt_checkbox`, `odt_radio`)
+
 ```erb
 <%= odt_checkbox label: "Keep me signed in", name: "remember", checked: true, color: :primary %>
 <%= odt_radio label: "Monthly Plan", name: "plan", value: "monthly", checked: true %>
@@ -172,6 +176,7 @@ Renders an interactive dropdown menu synchronized with a hidden form input.
 ```
 
 #### Form Group Wrapper (`odt_form_group`)
+
 Wraps custom or third-party inputs with standard label, helper, and error text:
 
 ```erb
@@ -218,32 +223,68 @@ Dialog with backdrop blur, scale animation, and keyboard accessibility.
 - **Trigger:** Connect any element by setting `data: { odt_modal_target_id: "<modal_id>" }`.
 - **Turbo Auto-Close:** Automatically closes when a form inside the modal finishes submitting via Turbo (`turbo:submit-end`).
 - **Dismissal:** Closes on `Escape`, clicking the backdrop, or clicking elements with `data: { action: "click->odt-modal#close" }`.
+- **Stimulus Control:** Programmatic open/close from other Stimulus controllers:
+  ```javascript
+  const modal = this.application.getControllerForElementAndIdentifier(
+    document.getElementById("new_task_modal"),
+    "odt-modal",
+  );
+  modal?.open(); // or modal?.close()
+  ```
+- **Lifecycle Events:** Dispatches `odt-modal:opened` and `odt-modal:closed` custom DOM events.
 
 ---
 
 ### Toasts & Flash Notifications
 
 #### In Layout (`app/views/layouts/application.html.erb`)
+
 ```erb
 <%= odt_toaster position: :bottom_right %>
 <%= odt_flash_toasts flash %>
 ```
 
 #### In Turbo Stream Responses
+
 ```erb
 <%# app/views/tasks/create.turbo_stream.erb %>
 <%= turbo_stream.prepend "tasks_list", partial: "task", locals: { task: @task } %>
 <%= odt_toast_stream @task.title, title: "Task created!", type: :success %>
 ```
 
-| Type | Description |
-| :--- | :--- |
-| `:default` | Neutral notification |
-| `:success` | Green check icon |
-| `:warning` | Amber alert icon |
-| `:danger` / `:error` | Red cross icon |
-| `:info` | Blue info icon |
-| `:loading` | Animated spinner icon |
+#### Declarative HTML Data-Actions
+
+Trigger client-side toasts directly from buttons or links using data attributes without writing custom JavaScript:
+
+```erb
+<%# Direct declarative trigger attribute %>
+<%= odt_button "Copy Link",
+      variant: :capsule,
+      data: {
+        odt_toast_title: "Copied!",
+        odt_toast_message: "Link copied to clipboard",
+        odt_toast_type: "success"
+      } %>
+
+<%# Or via Stimulus Action with action params %>
+<%= odt_button "Bookmark",
+      variant: :capsule,
+      data: {
+        action: "click->odt-toaster#show",
+        odt_toaster_title_param: "Saved!",
+        odt_toaster_message_param: "Added to favorites",
+        odt_toaster_type_param: "info"
+      } %>
+```
+
+| Type                 | Description           |
+| :------------------- | :-------------------- |
+| `:default`           | Neutral notification  |
+| `:success`           | Green check icon      |
+| `:warning`           | Amber alert icon      |
+| `:danger` / `:error` | Red cross icon        |
+| `:info`              | Blue info icon        |
+| `:loading`           | Animated spinner icon |
 
 ---
 
