@@ -2,7 +2,7 @@
 
 class TodosController < ApplicationController
   before_action :set_todo, only: %i[destroy toggle]
-  before_action :set_metrics, only: %i[index create toggle destroy]
+  before_action :set_metrics, only: :index
 
   def index
     @filter = params[:filter].presence || "all"
@@ -22,9 +22,11 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
+        set_metrics
         format.turbo_stream
         format.html { redirect_to root_path, notice: "Task created successfully!" }
       else
+        set_metrics
         format.turbo_stream { render turbo_stream: turbo_stream.replace("todo_form_container", partial: "form", locals: { todo: @todo }) }
         format.html { render :index, status: :unprocessable_entity }
       end
@@ -33,6 +35,7 @@ class TodosController < ApplicationController
 
   def toggle
     @todo.update(completed: !@todo.completed)
+    set_metrics
 
     respond_to do |format|
       format.turbo_stream
@@ -42,6 +45,7 @@ class TodosController < ApplicationController
 
   def destroy
     @todo.destroy
+    set_metrics
 
     respond_to do |format|
       format.turbo_stream
